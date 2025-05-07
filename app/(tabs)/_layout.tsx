@@ -7,12 +7,11 @@ import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
-  return <FontAwesome size={28} style={{ marginBottom: 0 }} {...props} />;
+  return <FontAwesome size={22} style={{ marginBottom: -4 }} {...props} />;
 }
 
 export default function TabLayout() {
@@ -22,10 +21,12 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        tabBarShowLabel: true,
         headerShown: useClientOnlyValue(false, true),
+        tabBarShowLabel: true,
+        tabBarLabelStyle: {
+          fontSize: 12,
+          paddingBottom: 4,
+        },
         tabBarStyle: {
           backgroundColor: Colors[colorScheme ?? 'light'].background,
           height: 60,
@@ -55,11 +56,13 @@ export default function TabLayout() {
       <Tabs.Screen
         name="points_screen"
         options={{
-          title: 'Task',
-          tabBarIcon: ({ color }) => <TabBarIcon name="pencil" color={color} />,
+          title: 'Points',
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="check-square-o" color={color} />
+          ),
         }}
       />
-            <Tabs.Screen
+      <Tabs.Screen
         name="reward"
         options={{
           title: 'Reward',
