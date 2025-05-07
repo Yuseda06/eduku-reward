@@ -53,7 +53,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="points_screen"
         options={{
           title: 'Task',
           tabBarIcon: ({ color }) => <TabBarIcon name="pencil" color={color} />,
